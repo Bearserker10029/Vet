@@ -14,7 +14,7 @@
             <a class="btn btn-primary" th:href="@{'/mascota/new'}">Nuevo Mascota</a>
             <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
-        <form method="post" th:action="@{/shipper/BuscarTransportistas}">
+        <form method="post" th:action="@{/mascota/BuscarMascotasNombre}">
             <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
         </form>
         <table class="table">
