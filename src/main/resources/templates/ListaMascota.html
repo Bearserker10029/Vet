@@ -15,7 +15,9 @@
             <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
         <form method="post" th:action="@{/mascota/BuscarMascotasNombre}">
-            <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
+            <input name="searchField" class="form-control mb-3" type="text" placeholder="Search" th:value="${textoBuscado}"/>
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <a class="btn btn-outline-secondary" th:href="@{/mascota}">Limpiar</a>
         </form>
         <table class="table">
             <thead>
@@ -24,6 +26,7 @@
                 <th>Nombre</th>
                 <th>Especie</th>
                 <th>Raza</th>
+                <th>Edad</th>
                 <th>Nombre del Dueño</th>
                 <th>Teléfono</th>
                 <th>Estado</th>

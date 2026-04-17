@@ -28,6 +28,7 @@ public class Mascota {
 
     private int edad;
 
+    @Column(name = "nombre_dueno")
     private String nombreDuenio;
 
     private String telefono;

@@ -19,11 +19,42 @@ public class MascotaController {
         this.mascotaRepository = mascotaRepository;
     }
 
-    @GetMapping(value = {"", "/"})
+    @GetMapping(value = {"", "/lista"})
     public String listaMascotas(Model model) {
         model.addAttribute("listaMascotas", mascotaRepository.findAll());
         return "ListaMascota";
     }
 
+    @PostMapping("/BuscarMascotasNombre")
+    public String buscarmascota(@RequestParam("searchField") String searchField,
+                                Model model) {
+
+        List<Mascota> listaMascotas = mascotaRepository.buscarNombreMascota(searchField);
+        model.addAttribute("mascotaList", listaMascotas);
+        model.addAttribute("textoBuscado", searchField);
+
+        return "ListaMascota";
+    }
+
+    @PostMapping("/BuscarMascotasEspecie")
+    public String buscarmascotaEspecie(@RequestParam("searchField") String searchField,
+                                       Model model) {
+
+        List<Mascota> listaMascotas = mascotaRepository.buscarEspecieMascota(searchField);
+        model.addAttribute("mascotaList", listaMascotas);
+        model.addAttribute("textoBuscado", searchField);
+
+        return "ListaMascota";
+    }
+    @PostMapping("/BuscarMascotasEstado")
+    public String buscarmascotaEstado(@RequestParam("searchField") String searchField,
+                                      Model model) {
+
+        List<Mascota> listaMascotas = mascotaRepository.buscarEstadoMascota(searchField);
+        model.addAttribute("mascotaList", listaMascotas);
+        model.addAttribute("textoBuscado", searchField);
+
+        return "ListaMascota";
+    }
 
 }
