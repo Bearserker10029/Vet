@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -55,6 +56,17 @@ public class MascotaController {
         model.addAttribute("textoBuscado", searchField);
 
         return "ListaMascota";
+    }
+
+    @GetMapping("/new")
+    public String nuevoMascotaFrm(Model model) {
+        return "product/newFrm";
+    }
+
+    @PostMapping("/save")
+    public String guardarProducto(Mascota mascota, RedirectAttributes attr) {
+        mascotaRepository.save(mascota);
+        return "redirect:/product";
     }
 
 }
