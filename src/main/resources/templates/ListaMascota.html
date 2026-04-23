@@ -14,10 +14,15 @@
             <a class="btn btn-primary" th:href="@{'/mascota/new'}">Nuevo Mascota</a>
             <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
-        <form method="post" th:action="@{/mascota/BuscarMascotasNombre}">
+        <form method="get" th:action="@{/mascota/lista}">
             <input name="searchField" class="form-control mb-3" type="text" placeholder="Search" th:value="${textoBuscado}"/>
+            <select class="form-select mb-3" name="tipoFiltro">
+                <option value="nombre" th:selected="${tipoFiltro == 'nombre'}">Nombre</option>
+                <option value="especie" th:selected="${tipoFiltro == 'especie'}">Especie</option>
+                <option value="estado" th:selected="${tipoFiltro == 'estado'}">Estado</option>
+            </select>
             <button class="btn btn-primary" type="submit">Buscar</button>
-            <a class="btn btn-outline-secondary" th:href="@{/mascota}">Limpiar</a>
+            <a class="btn btn-outline-secondary" th:href="@{/mascota/lista}">Limpiar</a>
         </form>
         <table class="table">
             <thead>

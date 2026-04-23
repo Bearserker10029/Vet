@@ -5,7 +5,6 @@ import com.example.demo.repository.MascotaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,40 +20,25 @@ public class MascotaController {
     }
 
     @GetMapping(value = {"", "/lista"})
-    public String listaMascotas(Model model) {
-        model.addAttribute("listaMascotas", mascotaRepository.findAll());
-        return "ListaMascota";
-    }
+    public String listaMascotas(
+            @RequestParam(name = "searchField", required = false) String searchField,
+            @RequestParam(name = "tipoFiltro", required = false) String tipoFiltro,
+            Model model) {
 
-    @PostMapping("/BuscarMascotasNombre")
-    public String buscarmascota(@RequestParam("searchField") String searchField,
-                                Model model) {
+        List<Mascota> listaMascotas;
 
-        List<Mascota> listaMascotas = mascotaRepository.buscarNombreMascota(searchField);
-        model.addAttribute("mascotaList", listaMascotas);
-        model.addAttribute("textoBuscado", searchField);
-
-        return "ListaMascota";
-    }
-
-    @PostMapping("/BuscarMascotasEspecie")
-    public String buscarmascotaEspecie(@RequestParam("searchField") String searchField,
-                                       Model model) {
-
-        List<Mascota> listaMascotas = mascotaRepository.buscarEspecieMascota(searchField);
-        model.addAttribute("mascotaList", listaMascotas);
-        model.addAttribute("textoBuscado", searchField);
-
-        return "ListaMascota";
-    }
-    @PostMapping("/BuscarMascotasEstado")
-    public String buscarmascotaEstado(@RequestParam("searchField") String searchField,
-                                      Model model) {
-
-        List<Mascota> listaMascotas = mascotaRepository.buscarEstadoMascota(searchField);
-        model.addAttribute("mascotaList", listaMascotas);
-        model.addAttribute("textoBuscado", searchField);
-
+        if (searchField != null && !searchField.isEmpty()) {
+            switch (tipoFiltro) {
+                case "especie" -> listaMascotas = mascotaRepository.buscarEspecieMascota(searchField);
+                case "estado" -> listaMascotas = mascotaRepository.buscarEstadoMascota(searchField);
+                default -> listaMascotas = mascotaRepository.buscarNombreMascota(searchField);
+            }
+            model.addAttribute("textoBuscado", searchField);
+            model.addAttribute("tipoFiltro", tipoFiltro);
+        } else {
+            listaMascotas = mascotaRepository.findAll();
+        }
+        model.addAttribute("listaMascotas", listaMascotas);
         return "ListaMascota";
     }
 
