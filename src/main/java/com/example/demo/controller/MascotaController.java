@@ -55,4 +55,15 @@ public class MascotaController {
         return "redirect:/mascota/lista";
     }
 
+    @GetMapping("/new")
+    public String nuevoMascotaFrm(Model model) {
+        return "product/newFrm";
+    }
+
+    @PostMapping("/save")
+    public String guardarProducto(Mascota mascota, RedirectAttributes attr) {
+        mascotaRepository.save(mascota);
+        return "redirect:/product";
+    }
+
 }
