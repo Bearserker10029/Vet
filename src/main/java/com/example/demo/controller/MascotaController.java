@@ -5,6 +5,7 @@ import com.example.demo.repository.MascotaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,13 +45,14 @@ public class MascotaController {
 
     @GetMapping("/new")
     public String nuevoMascotaFrm(Model model) {
-        return "product/newFrm";
+        model.addAttribute("mascota", new Mascota());
+        return "RegistroMascota";
     }
 
     @PostMapping("/save")
     public String guardarProducto(Mascota mascota, RedirectAttributes attr) {
         mascotaRepository.save(mascota);
-        return "redirect:/product";
+        return "redirect:/mascota/lista";
     }
 
 }
