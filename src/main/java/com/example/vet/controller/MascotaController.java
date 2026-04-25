@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.vet.controller;
 
-import com.example.demo.model.Mascota;
-import com.example.demo.repository.MascotaRepository;
+import com.example.vet.model.Mascota;
+import com.example.vet.repository.MascotaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
