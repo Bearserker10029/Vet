@@ -12,7 +12,7 @@
         <h1 class="pb-2 border-bottom">Lista de Mascotas</h1>
         <div class="d-flex mt-3 mb-4">
             <a class="btn btn-primary" th:href="@{'/mascota/new'}">Nuevo Mascota</a>
-            <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+            <a class="btn btn-secondary ms-auto" th:href="@{'/mascota'}">Regresar</a>
         </div>
         <form method="get" th:action="@{/mascota/lista}">
             <input name="searchField" class="form-control mb-3" type="text" placeholder="Search" th:value="${textoBuscado}"/>

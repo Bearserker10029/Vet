@@ -55,4 +55,18 @@ public class MascotaController {
         return "redirect:/mascota/lista";
     }
 
+    @GetMapping("/delete")
+    public String eliminarMascota(@RequestParam Integer id, RedirectAttributes attr) {
+        mascotaRepository.deleteById(id);
+        attr.addFlashAttribute("msgExito", "Mascota eliminada exitosamente");
+        return "redirect:/mascota/lista";
+    }
+
+    @GetMapping("/edit")
+    public String editarMascota(@RequestParam Integer id, Model model) {
+        Mascota mascota = mascotaRepository.findById(id).orElse(null);
+        model.addAttribute("mascota", mascota);
+        return "EditarMascota";
+    }
+
 }
