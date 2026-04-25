@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Lista Mascotas</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista de Mascotas</h1>
+        <div class="d-flex mt-3 mb-4">
+            <a class="btn btn-primary" th:href="@{'/mascota/new'}">Nuevo Mascota</a>
+            <a class="btn btn-secondary ms-auto" th:href="@{'/mascota'}">Regresar</a>
+        </div>
+        <form method="get" th:action="@{/mascota/lista}">
+            <input name="searchField" class="form-control mb-3" type="text" placeholder="Search" th:value="${textoBuscado}"/>
+            <select class="form-select mb-3" name="tipoFiltro">
+                <option value="nombre" th:selected="${tipoFiltro == 'nombre'}">Nombre</option>
+                <option value="especie" th:selected="${tipoFiltro == 'especie'}">Especie</option>
+                <option value="estado" th:selected="${tipoFiltro == 'estado'}">Estado</option>
+            </select>
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <a class="btn btn-outline-secondary" th:href="@{/mascota/lista}">Limpiar</a>
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Nombre del Dueño</th>
+                <th>Teléfono</th>
+                <th>Estado</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mascota, info : ${listaMascotas}">
+                <td th:text="${mascota.id}"></td>
+                <td th:text="${mascota.nombre}"></td>
+                <td th:text="${mascota.especie}"></td>
+                <td th:text="${mascota.raza}"></td>
+                <td th:text="${mascota.edad}"></td>
+                <td th:text="${mascota.nombreDuenio}"></td>
+                <td th:text="${mascota.telefono}"></td>
+                <td th:text="${mascota.estado}"></td>
+                <td><a class="btn btn-primary"
+                       th:href="@{'/mascota/edit?id=' + ${mascota.id}}">Editar</a>
+                </td>
+                <td><a class="btn btn-danger"
+                       th:href="@{'/mascota/delete?id=' + ${mascota.id}}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

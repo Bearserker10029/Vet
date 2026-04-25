@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Nuevo Mascota</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo Mascota</h1>
+        <form method="post" th:action="@{/mascota/save}" th:object="${mascota}" class="mt-2">
+            <div class="mb-3">
+                <label>Nombre del Mascota</label>
+                <input type="text" name="nombre" th:field="*{nombre}" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label>Especie</label>
+                <input type="text" name="especie" th:field="*{especie}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Raza</label>
+                <input type="text"  name="raza" th:field="*{raza}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Edad</label>
+                <input type="number"  name="edad" th:field="*{edad}" min="1" max="99">
+            </div>
+            <div class="mb-3">
+                <label>Nombre del dueño</label>
+                <input type="text"  name="nombreDuenio" th:field="*{nombreDuenio}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Telefono</label>
+                <input type="text"  name="telefono" th:field="*{telefono}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Estado</label>
+                <input type="number"  name="estado" th:field="*{estado}" min="0" max="1">
+            </div>
+            <a th:href="@{/mascota/lista}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
