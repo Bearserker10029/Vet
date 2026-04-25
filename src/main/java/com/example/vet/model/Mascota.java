@@ -1,12 +1,10 @@
-package com.example.demo.model;
+package com.example.vet.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.SplittableRandom;
 
 @Entity
 @Getter
